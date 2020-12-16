@@ -2,8 +2,9 @@ class CreateTable{
     
     constructor(){
         this._arrayOfTheTable = [];
-        this._amountOfLines = 18;
-        this._amountOfColumns = 18;
+        this._amountOfLines = 20 + 1;
+        this._amountOfColumns = 20 + 1;
+        this._position = 1;
     }
 
     create(element){
@@ -14,8 +15,9 @@ class CreateTable{
             table += "<tr>";
 
             for (let column = 1; column < this._amountOfColumns; column++) {
-                table += "<td>";
+                table += `<td id="td${this._position}">`;
                 table += "</td>";
+                this._position++;
             }
 
             table += "</tr>";
