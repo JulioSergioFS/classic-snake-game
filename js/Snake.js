@@ -10,8 +10,6 @@ class Snake {
         }
         this._td = document.querySelector(`#td${this._position}`);
         this._td.classList.add("snake");
-        console.log('snake is moving')
-        console.log(this._td)
     }
 
     spawn(row, column) { // linha 2 coluna 1
@@ -53,9 +51,5 @@ class Snake {
 
 
         });
-
-
-        console.log('snake stopped')
-
     }
 }
