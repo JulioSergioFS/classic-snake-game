@@ -1,52 +1,61 @@
-class Snake{
-    constructor(){
+class Snake {
+    constructor() {
         this._position = 1;
         this._td = '';
     }
 
-    _changeTd(spawn){
+    _changeTd(spawn) {
         if (!spawn) {
             this._td.classList.remove("snake");
         }
         this._td = document.querySelector(`#td${this._position}`);
         this._td.classList.add("snake");
+        console.log('snake is moving')
+        console.log(this._td)
     }
 
-    spawn(row, column){ // linha 2 coluna 1
-        this._position = (row*20)+(column);
+    spawn(row, column) { // linha 2 coluna 1
+        this._position = (row * 20) + (column);
         this._changeTd(true);
         console.log(this._td);
     }
 
-    loose(){
-        return this._position < 0 || this._position > 400;
-    }
+    walk() {
 
-    walk(lost){
-        while (lost){
-            document.addEventListener('keyup', (event) => {
+        document.addEventListener('keyup', (event) => {
 
-                if (event.key == 'ArrowUp') {
-                    this._position = this._position - 20;
-                    this._changeTd(false);
-                }
+            var lost = this._position <= 20 || this._position > 380 || this._position % 20 == 0 || this._position % 20 == 1;
+            //the line above checks if the player is touching the walls
 
-                if (event.key == 'ArrowLeft') {
-                    this._position = this._position - 1;
-                    this._changeTd(false);
-                }
-                
-                if (event.key == 'ArrowDown') {
-                    this._position = this._position + 20;
-                    this._changeTd(false);
-                }
-                
-                if (event.key == 'ArrowRight') {
-                    this._position++;
-                    this._changeTd(false);
-                }
-            });
-        }
-        
+            if(lost){ 
+                return;
+            }
+
+            if (event.key == 'ArrowUp') {
+                this._position = this._position - 20;
+                this._changeTd(false);
+            }
+
+            if (event.key == 'ArrowLeft') {
+                this._position = this._position - 1;
+                this._changeTd(false);
+            }
+
+            if (event.key == 'ArrowDown') {
+                this._position = this._position + 20;
+                this._changeTd(false);
+            }
+
+            if (event.key == 'ArrowRight') {
+                this._position++;
+                this._changeTd(false);
+            }
+
+
+        });
+
+
+        console.log('snake stopped')
+
     }
 }
