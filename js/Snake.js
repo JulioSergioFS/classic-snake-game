@@ -18,28 +18,35 @@ class Snake{
         console.log(this._td);
     }
 
-    walk(){
-        document.addEventListener('keyup', (event) => {
+    loose(){
+        return this._position < 0 || this._position > 400;
+    }
 
-            if (event.key == 'ArrowUp') {
-                this._position = this._position - 20;
-                this._changeTd(false);
-            }
+    walk(lost){
+        while (lost){
+            document.addEventListener('keyup', (event) => {
 
-            if (event.key == 'ArrowLeft') {
-                this._position = this._position - 1;
-                this._changeTd(false);
-            }
-            
-            if (event.key == 'ArrowDown') {
-                this._position = this._position + 20;
-                this._changeTd(false);
-            }
-            
-            if (event.key == 'ArrowRight') {
-                this._position++;
-                this._changeTd(false);
-            }
-        });
+                if (event.key == 'ArrowUp') {
+                    this._position = this._position - 20;
+                    this._changeTd(false);
+                }
+
+                if (event.key == 'ArrowLeft') {
+                    this._position = this._position - 1;
+                    this._changeTd(false);
+                }
+                
+                if (event.key == 'ArrowDown') {
+                    this._position = this._position + 20;
+                    this._changeTd(false);
+                }
+                
+                if (event.key == 'ArrowRight') {
+                    this._position++;
+                    this._changeTd(false);
+                }
+            });
+        }
+        
     }
 }
