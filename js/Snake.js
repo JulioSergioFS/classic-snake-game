@@ -20,52 +20,69 @@ class Snake {
 
     walk() {
 
-        let noCommandsYet = true;
+        let direction = 189;
 
         setInterval(() => {
-            if (noCommandsYet) {
-                this._position++;
-                this._changeTd(false);
-            } else {
-                document.addEventListener('keyup', (event) => {
 
-                    noCommandsYet = false;
+            document.addEventListener('keydown', (event) => {
 
-                    var lost = this._position <= 20 || this._position > 380 || this._position % 20 == 0 || this._position % 20 == 1;
-                    //the line above checks if the player is touching the walls
+                var lost = this._position <= 20 || this._position > 380 || this._position % 20 == 0 || this._position % 20 == 1;
+                //the line above checks if the player is touching the walls
+    
+                if (lost) {
+                    return;
+                }
+    
+                if (event.key == 'ArrowUp') {
+                    var up = setInterval(() => {
+                        direction = this._position - 20; 
+                        console.log(' up')
+                    }, 300);
+                }
+    
+                if (event.key == 'ArrowLeft') {
+                    var left = setInterval(() => {
+                        direction = this._position - 1;
+                        console.log(' left')
+                    }, 300);
+                }
+    
+                if (event.key == 'ArrowDown') {
+                    var down = setInterval(() => {
+                        direction = this._position + 20;
+                        console.log(' down')
+                    }, 300);
+                }
+    
+                if (event.key == 'ArrowRight') {
+                    var right = setInterval(() => {
+                        direction = this._position + 1;
+                        console.log(' right')
+                    }, 300);
+                }
 
-                    if (lost) {
-                        return;
-                    }
+                if(event.key == 'ArrowLeft' || event.key == 'ArrowDown' || event.key == 'ArrowRight') {
+                    clearInterval(up);
+                }
 
-                    if (event.key == 'ArrowUp') {
+                if(event.key == 'ArrowUp' || event.key == 'ArrowDown' || event.key == 'ArrowRight') {
+                    clearInterval(left);
+                }
 
-                        this._position = this._position - 20;
-                        this._changeTd(false);
-                    }
+                if(event.key == 'ArrowLeft' || event.key == 'ArrowUp' || event.key == 'ArrowRight') {
+                    clearInterval(down);
+                }
 
-                    if (event.key == 'ArrowLeft') {
+                if(event.key == 'ArrowLeft' || event.key == 'ArrowDown' || event.key == 'ArrowUp') {
+                    clearInterval(right);
+                }
+            });
+            this._position = direction;
+            //console.log(this._position)
+            //console.log(direction + )
+            this._changeTd(false);
+        }, 300)
 
-                        this._position = this._position - 1;
-                        this._changeTd(false);
-                    }
-
-                    if (event.key == 'ArrowDown') {
-
-                        this._position = this._position + 20;
-                        this._changeTd(false);
-                    }
-
-                    if (event.key == 'ArrowRight') {
-
-                        this._position++;
-                        this._changeTd(false);
-                    }
-                });
-            }
-
-        }, 200);
-
-
+        
     }
 }
