@@ -20,36 +20,52 @@ class Snake {
 
     walk() {
 
-        document.addEventListener('keyup', (event) => {
+        let noCommandsYet = true;
 
-            var lost = this._position <= 20 || this._position > 380 || this._position % 20 == 0 || this._position % 20 == 1;
-            //the line above checks if the player is touching the walls
-
-            if(lost){ 
-                return;
-            }
-
-            if (event.key == 'ArrowUp') {
-                this._position = this._position - 20;
-                this._changeTd(false);
-            }
-
-            if (event.key == 'ArrowLeft') {
-                this._position = this._position - 1;
-                this._changeTd(false);
-            }
-
-            if (event.key == 'ArrowDown') {
-                this._position = this._position + 20;
-                this._changeTd(false);
-            }
-
-            if (event.key == 'ArrowRight') {
+        setInterval(() => {
+            if (noCommandsYet) {
                 this._position++;
                 this._changeTd(false);
+            } else {
+                document.addEventListener('keyup', (event) => {
+
+                    noCommandsYet = false;
+
+                    var lost = this._position <= 20 || this._position > 380 || this._position % 20 == 0 || this._position % 20 == 1;
+                    //the line above checks if the player is touching the walls
+
+                    if (lost) {
+                        return;
+                    }
+
+                    if (event.key == 'ArrowUp') {
+
+                        this._position = this._position - 20;
+                        this._changeTd(false);
+                    }
+
+                    if (event.key == 'ArrowLeft') {
+
+                        this._position = this._position - 1;
+                        this._changeTd(false);
+                    }
+
+                    if (event.key == 'ArrowDown') {
+
+                        this._position = this._position + 20;
+                        this._changeTd(false);
+                    }
+
+                    if (event.key == 'ArrowRight') {
+
+                        this._position++;
+                        this._changeTd(false);
+                    }
+                });
             }
 
+        }, 200);
 
-        });
+
     }
 }
