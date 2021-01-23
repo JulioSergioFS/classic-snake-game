@@ -20,69 +20,104 @@ class Snake {
 
     walk() {
 
-        let direction = 189;
 
-        setInterval(() => {
+        document.addEventListener('keydown', (event) => {
 
-            document.addEventListener('keydown', (event) => {
+            var lost = this._position <= 20 || this._position > 380 || this._position % 20 == 0 || this._position % 20 == 1;
+            //the line above checks if the player is touching the walls
 
-                var lost = this._position <= 20 || this._position > 380 || this._position % 20 == 0 || this._position % 20 == 1;
-                //the line above checks if the player is touching the walls
-    
-                if (lost) {
-                    return;
-                }
-    
-                if (event.key == 'ArrowUp') {
-                    var up = setInterval(() => {
-                        direction = this._position - 20; 
-                        console.log(' up')
-                    }, 300);
-                }
-    
-                if (event.key == 'ArrowLeft') {
-                    var left = setInterval(() => {
-                        direction = this._position - 1;
-                        console.log(' left')
-                    }, 300);
-                }
-    
-                if (event.key == 'ArrowDown') {
-                    var down = setInterval(() => {
-                        direction = this._position + 20;
-                        console.log(' down')
-                    }, 300);
-                }
-    
-                if (event.key == 'ArrowRight') {
-                    var right = setInterval(() => {
-                        direction = this._position + 1;
-                        console.log(' right')
-                    }, 300);
-                }
+            var up, left, right, down;
+            //var direction;
+            var stopLeft = false;
+            var stopRight = false;
+            var stopDown = false;
+            var stopUP = false;
 
-                if(event.key == 'ArrowLeft' || event.key == 'ArrowDown' || event.key == 'ArrowRight') {
-                    clearInterval(up);
-                }
+            if (lost) {
+                return;
+            }
 
-                if(event.key == 'ArrowUp' || event.key == 'ArrowDown' || event.key == 'ArrowRight') {
-                    clearInterval(left);
-                }
+            if (event.key == 'ArrowUp') {
+                up = setInterval(() => {
+                    this._position = this._position - 20;
+                    console.log(' up')
+                    this._changeTd(false)
+                    if (stopUP) {
+                        clearInterval(up)
+                    }
+                }, 1000);
 
-                if(event.key == 'ArrowLeft' || event.key == 'ArrowUp' || event.key == 'ArrowRight') {
-                    clearInterval(down);
-                }
+                //direction = up;
 
-                if(event.key == 'ArrowLeft' || event.key == 'ArrowDown' || event.key == 'ArrowUp') {
-                    clearInterval(right);
-                }
-            });
-            this._position = direction;
-            //console.log(this._position)
-            //console.log(direction + )
-            this._changeTd(false);
-        }, 300)
+            }
 
-        
+            if (event.key == 'ArrowLeft') {
+                left = setInterval(() => {
+                    this._position = this._position - 1;
+                    console.log(' left')
+                    this._changeTd(false)
+                    if (stopLeft) {
+                        clearInterval(left)
+                    }
+                }, 1000);
+                //direction = left;
+
+            }
+
+            if (event.key == 'ArrowDown') {
+                down = setInterval(() => {
+                    this._position = this._position + 20;
+                    console.log(' down')
+                    this._changeTd(false)
+                    if (stopDown) {
+                        clearInterval(down)
+                    }
+                }, 1000);
+                //direction = down;
+
+            }
+
+            if (event.key == 'ArrowRight') {
+                right = setInterval(() => {
+                    this._position = this._position + 1;
+                    console.log(' right')
+                    this._changeTd(false)
+                    if (stopRight) {
+                        clearInterval(right)
+                    }
+                }, 1000);
+                //direction = right;
+
+            }
+
+            //if (event.key == 'ArrowDown' || event.key == 'ArrowUp' || event.key == 'ArrowRight' || event.key == 'ArrowLeft') {
+            //    clearInterval(direction);
+            //    console.log('cleared direction')
+            //}
+
+            if (event.key == 'ArrowDown' || event.key == 'ArrowUp' || event.key == 'ArrowRight') {
+                stopLeft = true;
+                //clearInterval(left);
+                console.log('cleared down')
+            }
+            if (event.key == 'ArrowLeft' || event.key == 'ArrowUp' || event.key == 'ArrowRight') {
+                stopDown = true;
+                //clearInterval(down);
+                console.log('cleared left')
+            }
+            if (event.key == 'ArrowDown' || event.key == 'ArrowUp' || event.key == 'ArrowRight') {
+                stopRight = true;
+                //clearInterval(right);
+                console.log('cleared right')
+            }
+            if (event.key == 'ArrowDown' || event.key == 'ArrowLeft' || event.key == 'ArrowRight') {
+                stopUP = true;
+                //clearInterval(up);
+                console.log('cleared down')
+            }
+        });
+
+
     }
+
 }
