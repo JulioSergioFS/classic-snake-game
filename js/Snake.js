@@ -15,7 +15,6 @@ export class Snake {
     spawn(row, column) { // linha 2 coluna 1
         this._position = (row * 20) + (column);
         this._changeTd(true);
-        console.log(this._td);
     }
 
     walk() {
