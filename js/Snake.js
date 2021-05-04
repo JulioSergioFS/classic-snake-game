@@ -1,4 +1,4 @@
-class Snake {
+export class Snake {
     constructor() {
         this._position = 1;
         this._td = '';

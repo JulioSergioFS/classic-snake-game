@@ -1,3 +1,3 @@
-class Food{
+export class Food{
 
 }

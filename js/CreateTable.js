@@ -1,4 +1,4 @@
-class CreateTable{
+export class CreateTable{
     
     constructor(){
         this._arrayOfTheTable = [];

@@ -1,4 +1,8 @@
-class Controller {
+import { CreateTable } from './CreateTable.js'
+import { Snake } from './Snake.js'
+import { Food } from './Food.js'
+
+export class Controller {
     constructor(table){
         this._table = new CreateTable().create(document.querySelector(table));
         this._snake = new Snake()
@@ -6,3 +10,5 @@ class Controller {
         this._walk = this._snake.walk();
     }
 }
+
+const controller = new Controller('#table-here');
