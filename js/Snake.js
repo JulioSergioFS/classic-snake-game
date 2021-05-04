@@ -29,8 +29,12 @@ export class Snake {
             }
 
             if (event.key == 'ArrowUp') {
-                this._position = this._position - 20;
-                this._changeTd(false);
+                while (!lost){
+                    setTimeout(() => {
+                        this._position = this._position - 20;
+                        this._changeTd(false);
+                    }, 1000)
+                }                
             }
 
             if (event.key == 'ArrowLeft') {
