@@ -28,33 +28,9 @@ export class Snake {
                 return;
             }
 
-            if (event.key == 'ArrowLeft' || event.key == 'ArrowDown' || event.key == 'ArrowRight') {
-                console.log(event.key)
-            }
-
-            let direction = '';
-
-            do {
-                console.log('aaa')
-                console.log(direction)
-                setTimeout(() => {
-                    this._position = this._position - 20;
-                    this._changeTd(false);
-                }, 500)
-            } while (direction === 'Up');
-
             if (event.key == 'ArrowUp') {
-                /*while (!lost){
-                    setTimeout(() => {
-                        this._position = this._position - 20;
-                        this._changeTd(false);
-                    }, 1000)
-                    if (event.key == 'ArrowLeft' || event.key == 'ArrowDown' || event.key == 'ArrowRight') {
-                        break
-                    }
-                }*/
-                direction = 'Up'
-                console.log(event.key)
+                this._position = this._position - 20;
+                this._changeTd(false);
             }
 
             if (event.key == 'ArrowLeft') {
@@ -63,7 +39,6 @@ export class Snake {
             }
 
             if (event.key == 'ArrowDown') {
-                direction = 'Down'
                 this._position = this._position + 20;
                 this._changeTd(false);
             }
