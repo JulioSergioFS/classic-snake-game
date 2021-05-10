@@ -2,6 +2,8 @@ export class Snake {
     constructor() {
         this._position = 1;
         this._td = '';
+        this._currentDirection = '';
+        this._historyOfDirections = [];
     }
 
     _changeTd(spawn) {
@@ -49,7 +51,13 @@ export class Snake {
     }
 
     _timeout(direction) {
-        let number = 0
+        let number = 0;
+        console.log(direction);
+        console.log(this._currentDirection);
+        if (direction != this._currentDirection && this._currentDirection != '') {
+            return
+        }
+        this._currentDirection = direction
         if (direction == 'ArrowUp') {
             number = -20
         }
@@ -69,9 +77,7 @@ export class Snake {
         setTimeout(() => {
             this._position = this._position + number;
             this._changeTd(false);
-            
-            this._timeout(direction)
+            this._timeout(direction);
         }, 1000);
-
     }
 }
