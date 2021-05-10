@@ -2,7 +2,7 @@ export class Snake {
     constructor() {
         this._position = 1;
         this._td = '';
-        this._currentDirection = '';
+        this._lastDirection = '';
         this._historyOfDirections = [];
     }
 
@@ -52,12 +52,16 @@ export class Snake {
 
     _timeout(direction) {
         let number = 0;
-        console.log(direction);
-        console.log(this._currentDirection);
-        if (direction != this._currentDirection && this._currentDirection != '') {
-            return
+        if (direction != this._lastDirection && this._lastDirection != '') {
+            this._historyOfDirections.push(this._lastDirection)
         }
-        this._currentDirection = direction
+        if (this._historyOfDirections.length >= 2) {
+            if (this._historyOfDirections[0] == direction) {
+                this._historyOfDirections.splice(0)
+                return
+            }
+        }
+        this._lastDirection = direction
         if (direction == 'ArrowUp') {
             number = -20
         }
@@ -78,6 +82,6 @@ export class Snake {
             this._position = this._position + number;
             this._changeTd(false);
             this._timeout(direction);
-        }, 1000);
+        }, 600);
     }
 }
