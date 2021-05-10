@@ -30,19 +30,19 @@ export class Snake {
                 return;
             }
 
-            if (event.key == 'ArrowUp') {
+            if (event.key == 'ArrowUp' || event.key == 'w') {
                 this._timeout(event.key);
             }
 
-            if (event.key == 'ArrowLeft') {
+            if (event.key == 'ArrowLeft' || event.key == 'a') {
                 this._timeout(event.key);
             }
 
-            if (event.key == 'ArrowDown') {
+            if (event.key == 'ArrowDown' || event.key == 's') {
                 this._timeout(event.key);
             }
 
-            if (event.key == 'ArrowRight') {
+            if (event.key == 'ArrowRight' || event.key == 'd') {
                 this._timeout(event.key);
             }
 
@@ -62,19 +62,19 @@ export class Snake {
             }
         }
         this._lastDirection = direction
-        if (direction == 'ArrowUp') {
+        if (direction == 'ArrowUp' || direction == 'w') {
             number = -20
         }
 
-        if (direction == 'ArrowLeft') {
+        if (direction == 'ArrowLeft' || direction == 'a') {
             number = -1
         }
 
-        if (direction == 'ArrowDown') {
+        if (direction == 'ArrowDown' || direction == 's') {
             number = 20
         }
 
-        if (direction == 'ArrowRight') {
+        if (direction == 'ArrowRight' || direction == 'd') {
             number = 1
         }
 
@@ -82,6 +82,6 @@ export class Snake {
             this._position = this._position + number;
             this._changeTd(false);
             this._timeout(direction);
-        }, 600);
+        }, 300);
     }
 }
