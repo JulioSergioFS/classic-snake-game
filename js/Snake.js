@@ -29,26 +29,49 @@ export class Snake {
             }
 
             if (event.key == 'ArrowUp') {
-                this._position = this._position - 20;
-                this._changeTd(false);
+                this._timeout(event.key);
             }
 
             if (event.key == 'ArrowLeft') {
-                this._position = this._position - 1;
-                this._changeTd(false);
+                this._timeout(event.key);
             }
 
             if (event.key == 'ArrowDown') {
-                this._position = this._position + 20;
-                this._changeTd(false);
+                this._timeout(event.key);
             }
 
             if (event.key == 'ArrowRight') {
-                this._position++;
-                this._changeTd(false);
+                this._timeout(event.key);
             }
 
 
         });
+    }
+
+    _timeout(direction) {
+        let number = 0
+        if (direction == 'ArrowUp') {
+            number = -20
+        }
+
+        if (direction == 'ArrowLeft') {
+            number = -1
+        }
+
+        if (direction == 'ArrowDown') {
+            number = 20
+        }
+
+        if (direction == 'ArrowRight') {
+            number = 1
+        }
+
+        setTimeout(() => {
+            this._position = this._position + number;
+            this._changeTd(false);
+            
+            this._timeout(direction)
+        }, 1000);
+
     }
 }
